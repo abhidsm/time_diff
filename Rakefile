@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "time_diff"
   gem.homepage = "http://github.com/abhidsm/time_diff"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Gem to get the difference between two time}
+  gem.description = %Q{It returns a hash file with the difference in terms of year, month, week, day, hour, minute and second}
   gem.email = "abhidsm@gmail.com"
   gem.authors = ["abhilash"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
