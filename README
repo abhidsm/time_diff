@@ -1,0 +1,18 @@
+Installing
+----------
+
+gem install time_diff
+
+Usage
+-----
+
+require 'time_diff'
+
+diff = Time.diff(start_date_time, end_date_time)
+
+This will return the hash of time difference in terms of years, month, week, day, hour, minute and second.
+
+You can use the difference like:
+
+diff[:year], diff[:month], diff[:week]
+
