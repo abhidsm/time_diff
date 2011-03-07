@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{time_diff}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["abhilash"]
@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
     "lib/time_diff.rb",
     "test/helper.rb",
     "test/test_time_diff.rb",
-    "time_diff-0.1.0.gem",
     "time_diff.gemspec"
   ]
   s.homepage = %q{http://github.com/abhidsm/time_diff}
