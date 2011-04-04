@@ -2,7 +2,7 @@ require 'rubygems'
 require 'active_support/all'
 
 class Time
-  def self.diff(start_date, end_date)
+  def self.diff(start_date, end_date, format_string='%y, %M, %w, %d and %h:%m:%s')
     start_time = start_date.to_time if start_date.respond_to?(:to_time)
     end_time = end_date.to_time if end_date.respond_to?(:to_time)
     distance_in_seconds = ((end_time - start_time).abs).round
@@ -13,6 +13,41 @@ class Time
         distance_in_seconds -= component.send(interval)
         components << component
     end
-    return {:year => components[0], :month => components[1], :week => components[2], :day => components[3], :hour => components[4], :minute => components[5], :second => components[6]}
+    time_diff_components = {:year => components[0], :month => components[1], :week => components[2], :day => components[3], :hour => components[4], :minute => components[5], :second => components[6]}
+    format_string = remove_format_string_for_zero_components(time_diff_components, format_string)
+    time_diff_components[:diff] = format_date_time(time_diff_components, format_string) unless format_string.nil?
+    return time_diff_components
+  end
+
+  def Time.format_date_time(time_diff_components, format_string)
+    format_string.gsub!('%y', "#{time_diff_components[:year]} #{pluralize('year', time_diff_components[:year])}")
+    format_string.gsub!('%M', "#{time_diff_components[:month]} #{pluralize('month', time_diff_components[:month])}")
+    format_string.gsub!('%w', "#{time_diff_components[:week]} #{pluralize('week', time_diff_components[:week])}")
+    format_string.gsub!('%d', "#{time_diff_components[:day]} #{pluralize('day', time_diff_components[:day])}")
+    format_string.gsub!('%h', format_digit(time_diff_components[:hour]).to_s)
+    format_string.gsub!('%m', format_digit(time_diff_components[:minute]).to_s)
+    format_string.gsub!('%s', format_digit(time_diff_components[:second]).to_s)
+    format_string
+  end
+
+  def Time.pluralize(word, count)
+    return count > 1 ? word.pluralize : word
+  end
+
+  def Time.remove_format_string_for_zero_components(time_diff_components, format_string)
+    format_string.gsub!('%y, ','') if time_diff_components[:year] == 0
+    format_string.gsub!('%M, ','') if time_diff_components[:month] == 0
+    format_string.gsub!('%w, ','') if time_diff_components[:week] == 0
+    if format_string.slice(0..1) == '%d'
+      format_string.gsub!('%d ','') if time_diff_components[:day] == 0
+    else
+      format_string.gsub!(', %d','') if time_diff_components[:day] == 0
+    end
+    format_string.slice!(0..3) if format_string.slice(0..3) == 'and ' 
+    format_string
+  end
+
+  def Time.format_digit(number)
+    return '%02d' % number
   end
 end
