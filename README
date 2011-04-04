@@ -16,3 +16,19 @@ You can use the difference like:
 
 diff[:year], diff[:month], diff[:week]
 
+
+Formatted Time difference
+-------------------------
+
+%y - year
+%M - month
+%w - week
+%d - day
+%h - hour
+%m - minute
+%s - second
+
+By default the format is '%y, %M, %w, %d and %h:%m:%s' this will return '1 year, 2 months, 3 weeks, 4 days and 12:05:52'.
+You will get the result from the output hash, time_diff_components[:diff] 
+
+You can pass your own format as third parameter to this function.
