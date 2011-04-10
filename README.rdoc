@@ -53,6 +53,15 @@ You can pass your own format as third parameter to this function.
 
 If you give '%d %h' as the third parameter to the Time.diff() method, then the difference(time_diff_components[:diff]) will be calculated only in days and hours.
 
+== Examples
+
+    > Time.diff(Time.parse('2011-03-06'), Time.parse('2011-03-07'))
+    => {:year => 0, :month => 0, :week => 0, :day => 1, :hour => 0, :minute => 0, :second => 0, :diff => '1 day and 00:00:00'}
+    > Time.diff(Time.parse('2010-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%y, %d and %h:%m:%s')
+    => {:year => 1, :month => 0, :week => 0, :day => 0, :hour => 18, :minute => 0, :second => 30, :diff => '1 year and 18:00:30'}
+    > Time.diff(Time.parse('2011-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%H %N %S')
+    => {:year => 0, :month => 0, :week => 0, :day => 1, :hour => 0, :minute => 0, :second => 30, :diff => '24 hours 0 minute 30 seconds'} 
+
 == Contributing to time_diff
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
