@@ -65,7 +65,7 @@ class Time
   end
 
   def Time.pluralize(word, count)
-    return count > 1 ? word.pluralize : word
+    return count != 1 ? word.pluralize : word
   end
 
   def Time.remove_format_string_for_zero_components(time_diff_components, format_string)

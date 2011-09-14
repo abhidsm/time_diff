@@ -13,8 +13,8 @@ class TestTimeDiff < Test::Unit::TestCase
 
   should "return the time difference in a formatted text" do
     assert_test_scenarios_for_formatted_diff(Time.parse('2010-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%y, %d and %h:%m:%s', '1 year and 18:00:30')
-    assert_test_scenarios_for_formatted_diff(Time.parse('2010-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%d %H %N %S', '366 days 0 hour 0 minute 30 seconds')
-    assert_test_scenarios_for_formatted_diff(Time.parse('2011-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%H %N %S', '24 hours 0 minute 30 seconds')
+    assert_test_scenarios_for_formatted_diff(Time.parse('2010-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%d %H %N %S', '366 days 0 hours 0 minutes 30 seconds')
+    assert_test_scenarios_for_formatted_diff(Time.parse('2011-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%H %N %S', '24 hours 0 minutes 30 seconds')
   end
 
   def assert_test_scenarios(start_date, end_date, expected_result)
