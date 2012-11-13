@@ -4,7 +4,7 @@ require 'i18n'
 
 class Time
   def self.diff(start_date, end_date, format_string='%y, %M, %w, %d and %h:%m:%s')
-    #I18n.load_path += Dir.glob("lib/*.yml")
+    I18n.load_path += Dir.glob("lib/*.yml")
     start_time = start_date.to_time if start_date.respond_to?(:to_time)
     end_time = end_date.to_time if end_date.respond_to?(:to_time)
     distance_in_seconds = ((end_time - start_time).abs).round
