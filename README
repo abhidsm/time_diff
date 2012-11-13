@@ -65,7 +65,6 @@ If you give '%d %h' as the third parameter to the Time.diff() method, then the d
 == i18n support
 
    Add locales for day, days, week, weeks, year, hour, hours, minute, minutes, second, and seconds in your YAML file. For eg:
-
    en:
      day: divasam
      days: divasangal
