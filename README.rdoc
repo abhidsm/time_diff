@@ -62,6 +62,14 @@ If you give '%d %h' as the third parameter to the Time.diff() method, then the d
     > Time.diff(Time.parse('2011-03-06 12:30:00'), Time.parse('2011-03-07 12:30:30'), '%H %N %S')
     => {:year => 0, :month => 0, :week => 0, :day => 1, :hour => 0, :minute => 0, :second => 30, :diff => '24 hours 0 minute 30 seconds'} 
 
+== i18n support
+
+   Add translations for day, days, week, weeks, year, hour, hours, minute, minutes, second, and seconds in your YAML file. For eg:
+   
+   en:
+     day: divasam
+     days: divasangal
+
 == Contributing to time_diff
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

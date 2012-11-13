@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'active_support/all'
+require 'i18n'
 
 class Time
   def self.diff(start_date, end_date, format_string='%y, %M, %w, %d and %h:%m:%s')
+    #I18n.load_path += Dir.glob("lib/*.yml")
     start_time = start_date.to_time if start_date.respond_to?(:to_time)
     end_time = end_date.to_time if end_date.respond_to?(:to_time)
     distance_in_seconds = ((end_time - start_time).abs).round
@@ -65,7 +67,7 @@ class Time
   end
 
   def Time.pluralize(word, count)
-    return count != 1 ? word.pluralize : word
+    return count != 1 ? I18n.t(word.pluralize, :default => word.pluralize) : I18n.t(word, :default =>  word)
   end
 
   def Time.remove_format_string_for_zero_components(time_diff_components, format_string)
