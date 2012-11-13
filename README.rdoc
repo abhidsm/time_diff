@@ -1,5 +1,7 @@
-= time_diff
+= time_diff 
 Gem which calculates the difference between two time
+
+{<img src="https://travis-ci.org/abhidsm/time_diff.png" />}[https://travis-ci.org/abhidsm/time_diff]
 
 == Installation
 
