@@ -77,10 +77,8 @@ class Time
       value = component.values.first
       format_string.gsub!("#{value}, ",'') if time_diff_components[key] == 0
     end
-    if format_string.slice(0..1) == '%d'
-      format_string.gsub!('%d ','') if time_diff_components[:day] == 0
-    else
-      format_string.gsub!(', %d','') if time_diff_components[:day] == 0
+    if time_diff_components[:day] == 0
+      (format_string.slice(0..1) == '%d')? format_string.gsub!('%d ','') : format_string.gsub!(', %d','')
     end
     format_string.slice!(0..3) if format_string.slice(0..3) == 'and ' 
     format_string
