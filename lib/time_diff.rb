@@ -22,10 +22,11 @@ class Time
 
   def self.get_formatted_intervals(format_string)
     intervals = []
-    intervals << 'year' if format_string.include?('%y')
-    intervals << 'month' if format_string.include?('%M')
-    intervals << 'week' if format_string.include?('%w')
-    intervals << 'day' if format_string.include?('%d')
+    [{'year' => '%y'}, {'month' => '%M'}, {'week' => '%w'}, {'day' => '%d'}].each do |component|
+      key = component.keys.first
+      value = component.values.first
+      intervals << key if format_string.include?(value)
+    end
     intervals << 'hour' if format_string.include?('%h') || format_string.include?('%H')
     intervals << 'minute' if format_string.include?('%m') || format_string.include?('%N')
     intervals << 'second' if format_string.include?('%s') || format_string.include?('%S')
@@ -53,16 +54,16 @@ class Time
   end
 
   def Time.format_date_time(time_diff_components, format_string)
-    format_string.gsub!('%y', "#{time_diff_components[:year]} #{pluralize('year', time_diff_components[:year])}") if time_diff_components[:year] 
-    format_string.gsub!('%M', "#{time_diff_components[:month]} #{pluralize('month', time_diff_components[:month])}") if time_diff_components[:month]
-    format_string.gsub!('%w', "#{time_diff_components[:week]} #{pluralize('week', time_diff_components[:week])}") if time_diff_components[:week]
-    format_string.gsub!('%d', "#{time_diff_components[:day]} #{pluralize('day', time_diff_components[:day])}") if time_diff_components[:day]
-    format_string.gsub!('%H', "#{time_diff_components[:hour]} #{pluralize('hour', time_diff_components[:hour])}") if time_diff_components[:hour]
-    format_string.gsub!('%N', "#{time_diff_components[:minute]} #{pluralize('minute', time_diff_components[:minute])}") if time_diff_components[:minute]
-    format_string.gsub!('%S', "#{time_diff_components[:second]} #{pluralize('second', time_diff_components[:second])}") if time_diff_components[:second]
-    format_string.gsub!('%h', format_digit(time_diff_components[:hour]).to_s) if time_diff_components[:hour]
-    format_string.gsub!('%m', format_digit(time_diff_components[:minute]).to_s) if time_diff_components[:minute]
-    format_string.gsub!('%s', format_digit(time_diff_components[:second]).to_s) if time_diff_components[:second]
+    [{:year => '%y'}, {:month => '%M'}, {:week => '%w'}, {:day => '%d'}, {:hour => '%H'}, {:minute => '%N'}, {:second => '%S'}].each do |component|
+      key = component.keys.first
+      value = component.values.first
+      format_string.gsub!(value, "#{time_diff_components[key]} #{pluralize(key.to_s, time_diff_components[key])}") if time_diff_components[key] 
+    end
+    [{:hour => '%h'},{:minute => '%m'},{:second => '%s'}].each do |component|
+      key = component.keys.first
+      value = component.values.first
+      format_string.gsub!(value, format_digit(time_diff_components[key]).to_s) if time_diff_components[key]
+    end
     format_string
   end
 
@@ -71,9 +72,11 @@ class Time
   end
 
   def Time.remove_format_string_for_zero_components(time_diff_components, format_string)
-    format_string.gsub!('%y, ','') if time_diff_components[:year] == 0
-    format_string.gsub!('%M, ','') if time_diff_components[:month] == 0
-    format_string.gsub!('%w, ','') if time_diff_components[:week] == 0
+    [{:year => '%y'}, {:month => '%M'}, {:week => '%w'}].each do |component|
+      key = component.keys.first
+      value = component.values.first
+      format_string.gsub!("#{value}, ",'') if time_diff_components[key] == 0
+    end
     if format_string.slice(0..1) == '%d'
       format_string.gsub!('%d ','') if time_diff_components[:day] == 0
     else
