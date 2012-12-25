@@ -2,6 +2,7 @@
 Gem which calculates the difference between two time
 
 {<img src="https://travis-ci.org/abhidsm/time_diff.png" />}[https://travis-ci.org/abhidsm/time_diff]
+{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/abhidsm/time_diff]
 
 == Installation
 
