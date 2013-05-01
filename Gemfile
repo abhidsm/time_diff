@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gem 'activesupport'
 gem 'i18n'
-gem 'coveralls', require: false
+gem 'coveralls', require => false
 # Add dependencies required to use your gem here.
 # Example:
 #   gem "activesupport", ">= 2.3.5"
