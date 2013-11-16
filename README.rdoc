@@ -5,6 +5,8 @@ Gem which calculates the difference between two time
 {<img src="https://travis-ci.org/abhidsm/time_diff.png" />}[https://travis-ci.org/abhidsm/time_diff]
 {<img src="https://codeclimate.com/github/abhidsm/time_diff.png" />}[https://codeclimate.com/github/abhidsm/time_diff]
 
+{<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" />}[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=abhidsm%40gmail%2ecom&lc=US&item_name=time_diff&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest]
+
 == Installation
 
     gem install time_diff
